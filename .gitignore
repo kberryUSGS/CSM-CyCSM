@@ -1,0 +1,17 @@
+# Ignore the build and lib dirs
+build
+dist
+*.so
+
+# iPython checkpoint items
+.ipynb_checkpoints/*
+
+# Ignore any executables
+bin/*
+
+# Ignore any Mac stuff
+.DS_Store
+
+# Additional dot files
+.cache
+__pycache__/*
