@@ -1,11 +1,17 @@
 import os
 import pkg_resources
 import sys
+import sysconfig
 from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
 from Cython.Distutils import build_ext
 
-INCLUDE_DIRS = ['cycsm/include/']
+# Look for the csmapi headers in the standard location
+incdir = os.path.dirname(sysconfig.get_path('include'))
+incdir = os.path.join(incdir, 'csm')
+
+
+INCLUDE_DIRS = [incdir]
 LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
 LIBRARIES = ['csmapi']
 COMPILE_ARGS = ['-g', '-std=c++11']#, '-stdlib=libc++']

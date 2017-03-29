@@ -15,3 +15,8 @@ bin/*
 # Additional dot files
 .cache
 __pycache__/*
+__pycache__
+
+# Cython and Packaging Stuff
+*.cpp
+*.egg*

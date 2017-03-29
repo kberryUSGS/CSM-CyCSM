@@ -1,3 +1,2 @@
-recursive-include cycsm/include *.h
 recursive-include cycsm *.pyx * pxd
 recursive-include cycsm/examples *
