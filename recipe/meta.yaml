@@ -1,0 +1,39 @@
+{% set version = "0.1.0" %}
+
+package:
+  name: cycsm
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/USGS-Astrogeology/CSM-CyCSM
+  git_rev: master
+
+build:
+  number: 0
+  detect_binary_files_with_prefix: true
+
+requirements:
+  build:
+    - python >=3.*
+    - setuptools
+    - numpy >=1.10
+    - cython >=0.23
+    - libcsm >=3.0.1
+  run:
+    - python >=3.*
+    - numpy >=1.10
+    - libcsm >=3.0.1
+
+test:
+  requires:
+    - pytest
+
+  imports:
+    - cycsm.isd
+    - cycsm.model
+    - cycsm.csm
+    - cycsm.examples
+
+about:
+  home: None
+  license: Unlicense

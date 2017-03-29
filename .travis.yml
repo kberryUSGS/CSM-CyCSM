@@ -45,11 +45,12 @@ install:
 
 
   # Development installation
-  - conda install pytest pytest-cov
+  - conda install conda-build pytest pytest-cov
   - pip install coveralls
 
 script:
-  - pytest --cov=autocnet
+  - conda build recipe
+  - pytest --cov=cycsm
   # clean up any remaining processes...
   - if [ $TRAVIS_OS_NAME == "linux" ]; then killall5; fi
 
