@@ -1,8 +1,21 @@
 sudo: false
 
+compiler:
+  - gcc
+  - clang
+
+addons:
+  apt:
+    sources:
+      - llvm-toolchain-precise
+      - ubuntu-toolchain-r-test
+    package:
+      - g++-4.8
+      - gcc-4.8
+
 branches:
-only:
-  - master
+  only:
+    - master
 
 env:
   matrix:
