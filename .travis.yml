@@ -21,7 +21,7 @@ matrix:
 before_install:
     - eval "${MATRIX_EVAL}"
     - $CXX --version
-    
+
 install:
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
@@ -59,6 +59,7 @@ install:
   - pip install coveralls
 
 script:
+  - gcc --version
   - conda build recipe
   - pytest --cov=cycsm
   # clean up any remaining processes...
