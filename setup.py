@@ -32,7 +32,9 @@ if sys.platform == 'darwin':
 # Create the extensions
 extensions = [generate_extension('cycsm.isd', ['cycsm/isd.pyx']),
               generate_extension('cycsm.csm', ['cycsm/csm.pyx']),
-              generate_extension('cycsm.model', ['cycsm/model.pyx'])]
+              generate_extension('cycsm.model', ['cycsm/model.pyx']),
+              generate_extension('cycsm.version', ['cycsm/version.pyx'])]
+              #generate_extension('cycsm.rastergm', ['cycsm/rastergm.pyx'])]
 
 setup(
     name='cycsm',

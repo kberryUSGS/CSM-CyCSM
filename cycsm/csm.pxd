@@ -11,3 +11,12 @@ cdef extern from "csm.h" namespace "csm::param":
     cdef struct CppImageVector "csm::ImageVector":
         double line
         double samp
+
+    cdef struct CppEcefVector "csm::EcefVector":
+        double x
+        double y
+        double z
+
+    cdef struct CppEcefLocus "csm::EcefLocus":
+        CppEcefCoord point
+        CppEcefVector direction
