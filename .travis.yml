@@ -10,7 +10,6 @@ branches:
 matrix:
   include:
     - compiler: gcc
-
       addons:
         apt:
           sources:
@@ -20,7 +19,7 @@ matrix:
           env:
             - CXX=g++-4.9
             - CC=gcc-4.9
-            - PYTHON_VERSION: 3.5
+            - PYTHON_VERSION=3.5
 
 os:
   - linux
