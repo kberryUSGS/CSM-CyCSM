@@ -2,31 +2,29 @@ sudo: false
 
 compiler:
   - gcc
-  - clang
-
-addons:
-  apt:
-    sources:
-      - llvm-toolchain-precise
-      - ubuntu-toolchain-r-test
-    package:
-      - g++-4.8
-      - gcc-4.8
 
 branches:
   only:
     - master
 
-env:
-  matrix:
+matrix:
+  include:
+    - compiler: gcc
     - PYTHON_VERSION: 3.5
-
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++4.9
+          env:
+            - CXX=g++-4.9
+            - CC=gcc-4.9
 os:
   - linux
   - osx
 
 install:
-  - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -71,4 +69,5 @@ script:
 after_success:
   # Upload to anaconda and push to coveralls
   #- coveralls
+
 
