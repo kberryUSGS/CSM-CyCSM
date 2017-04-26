@@ -4,15 +4,6 @@ compiler:
   - gcc
   - clang
 
-addons:
-  apt:
-    sources:
-      - llvm-toolchain-precise
-      - ubuntu-toolchain-r-test
-    package:
-      - g++-4.8
-      - gcc-4.8
-
 branches:
   only:
     - master
@@ -26,6 +17,15 @@ os:
   - osx
 
 install:
+- if [ "$CXX" = "g++" ]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+    - clang
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
