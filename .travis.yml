@@ -1,8 +1,5 @@
 sudo: false
 
-compiler:
-  - gcc
-
 branches:
   only:
     - master
@@ -15,7 +12,7 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++4.9
+            - g++-4.9
           env:
             - CXX=g++-4.9
             - CC=gcc-4.9
