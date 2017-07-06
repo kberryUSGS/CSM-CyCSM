@@ -63,6 +63,7 @@ cdef class ImageCoord:
     def line(self, double value):
         self.thisptr.line = value
 
+
 cdef class EcefCoord:
     cdef CppEcefCoord thisptr
 
@@ -106,6 +107,7 @@ cdef class EcefCoord:
     def z(self, double value):
         self.thisptr.z = value
 
+
 cdef class EcefVector:
     cdef CppEcefVector thisptr
 
@@ -140,6 +142,7 @@ cdef class EcefVector:
     def z(self, double value):
         self.thisptr.z = value
 
+
 cdef class EcefLocus:
     cdef CppEcefLocus thisptr
 
@@ -169,3 +172,16 @@ cdef class EcefLocus:
         self.thisptr.direction.x = value[0]
         self.thisptr.direction.y = value[1]
         self.thisptr.direction.z = value[2]
+
+
+cdef extern from "csm.h" namespace "csm::param":
+  cpdef enum Set:
+    VALID,
+    ADJUSTABLE,
+    NON_ADJUSTABLE
+
+  cpdef enum Type:
+    NONE,
+    FICTITIOUS,
+    REAL,
+    FIXED
