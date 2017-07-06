@@ -51,7 +51,7 @@ install:
 
 script:
   - python setup.py install
-  - pytest --cov=cycsm --ignore plio/examples
+  - pytest --cov=cycsm
   # clean up any remaining processes...
   - if [ $TRAVIS_OS_NAME == "linux" ]; then killall5; fi
 
