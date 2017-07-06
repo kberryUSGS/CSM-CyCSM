@@ -19,8 +19,23 @@ cdef class Isd:
 
     @classmethod
     def loads(cls, stream):
+        """
+        Create an isd from a stream, e.g. a string, or from a dict. If a 
+        stream, attempt to load as JSON.
+
+        Parameters
+        ----------
+        stream : str or dict
+                 if str, assumed to be JSON encoded as a string
+
+        Returns
+        -------
+        isd : object
+              an ISD object
+        """
         isd = cls()
-        d = json.loads(stream)
+        if not isinstance(stream, dict):
+            d = json.loads(stream)
         for k, v in d.items():
             isd.addparam(k, v)
         return isd
