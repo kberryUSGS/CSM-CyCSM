@@ -35,8 +35,8 @@ cdef class Isd:
         """
         isd = cls()
         if not isinstance(stream, dict):
-            d = json.loads(stream)
-        for k, v in d.items():
+            stream = json.loads(stream)
+        for k, v in stream.items():
             isd.addparam(k, v)
         return isd
 
