@@ -1,16 +1,27 @@
-sudo: false
-language: python
+dist: trusty
+sudo: required
+language: cpp
 
 branches:
   only:
     - master
 
+compiler:
+  - gcc  # [linux]
+  - clang  # [osx]
 python:
   - "3.4"
   - "3.5"
   - "3.6"
 
+before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+
 install:
+  # Get gcc 4.8 installed
+  - sudo apt-get install -qq g++-4.8
+  - export CXX="g++-4.8"
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
@@ -26,14 +37,14 @@ install:
         curl -o miniconda.sh  https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh;
       fi
     fi
+
+  # More conda setup to get miniconda in and a virtual env. setup
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
-  # Useful for debugging any issues with conda
-  - conda info -a
-
+  - conda info -a   # Useful for debugging any issues with conda
   - conda create -q -n test-environment python=$TRAVIS_PYTHON_VERSION
   - source activate test-environment
 
@@ -41,10 +52,8 @@ install:
   - conda config --add channels conda-forge
   - conda config --add channels jlaura
   - conda config --set ssl_verify false
-  - conda install gcc
   - conda install -c conda-forge numpy cython
   - conda install -c jlaura libcsm
-
 
   # Development installation
   - conda install pytest pytest-cov
