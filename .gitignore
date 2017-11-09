@@ -20,3 +20,6 @@ __pycache__
 # Cython and Packaging Stuff
 *.cpp
 *.egg*
+
+# Python
+*.pyc
