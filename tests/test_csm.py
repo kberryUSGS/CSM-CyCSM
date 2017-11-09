@@ -2,12 +2,13 @@ import pytest
 
 from cycsm import csm
 
+
 class TestImageVector:
     def test_default_creation(self):
         v = csm.ImageVector()
         assert v.line == 0
         assert v.sample == 0
-
+    
     def test_parameterized_creation(self):
         v = csm.ImageVector(-1.0, 2)
         assert v.line == -1.0
