@@ -35,5 +35,5 @@ test:
     - cycsm.examples
 
 about:
-  home: None
+  home: https://github.com/USGS-Astrogeology/CSM-CyCSM
   license: Unlicense
