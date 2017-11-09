@@ -31,7 +31,11 @@ install:
 
   # Install dependencies
   - conda config --add channels usgs-astrogeology
+<<<<<<< HEAD
   - conda config --add channels conda-forge
+=======
+  - conda config --add channesl conda-forge
+>>>>>>> 76a9ebbb153e34ba507899ccffedfdbdcab4d259
   - conda install -c conda-forge numpy cython
   - conda install -c usgs-astrogeology libcsm
 
