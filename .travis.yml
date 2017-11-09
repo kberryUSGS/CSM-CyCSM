@@ -4,6 +4,7 @@ language: python
 python:
   - "3.5"
   - "3.6"
+
 os:
   - linux
   - osx
@@ -42,7 +43,6 @@ install:
 script:
   - python setup.py install
   - pytest --cov=cycsm
-  # clean up any remaining processes...
 
 after_success:
   - coveralls
