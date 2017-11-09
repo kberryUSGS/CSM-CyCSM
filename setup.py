@@ -26,8 +26,8 @@ def generate_extension(path_name, sources):
                 library_dirs=LIBRARY_DIRS,
                 libraries=LIBRARIES)
 
-if sys.platform == 'darwin':
-    COMPILE_ARGS.append('-mmacosx-version-min=10.9')
+#if sys.platform == 'darwin':
+#    COMPILE_ARGS.append('-mmacosx-version-min=10.9')
 
 # Create the extensions
 extensions = [generate_extension('cycsm.isd', ['cycsm/isd.pyx']),
