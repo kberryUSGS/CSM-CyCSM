@@ -1,40 +1,24 @@
-dist: trusty
-sudo: required
+
 language: python
+
+python:
+  - "3.5"
+  - "3.6"
+os:
+  - linux
+  - osx
 
 branches:
   only:
     - master
 
-before_install:
-  - if
-      ["$TRAVIS_OS_NAME" == "linux"] ; then
-    fi
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update -qq
-
-before_install:
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update -qq
-
 install:
-  # Get gcc 4.8 installed
-  - sudo apt-get install -qq g++-4.8
-  - export CXX="g++-4.8"
   # We do this conditionally because it saves us some downloading if the
   # version is the same.
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then
-      if [ "${PYTHON_VERSION}" == 2.7 ]; then
-        wget https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh -O miniconda.sh;
-      else
         wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-      fi
     else
-      if ["${PYTHON_VERSION}" == 2.7]; then
         curl -o miniconda.sh  https://repo.continuum.io/miniconda/Miniconda-latest-MacOSX-x86_64.sh;
-      else
-        curl -o miniconda.sh  https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh;
-      fi
     fi
 
   # More conda setup to get miniconda in and a virtual env. setup
@@ -44,15 +28,12 @@ install:
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
   - conda info -a   # Useful for debugging any issues with conda
-  - conda create -q -n test-environment python=3.6
-  - source activate test-environment
 
   # Install dependencies
-  - conda config --add channels conda-forge
-  - conda config --add channels jlaura
-  - conda config --set ssl_verify false
+  - conda config --add channels usgs-astrogeology
+  - conda config --add channesl conda-forge
   - conda install -c conda-forge numpy cython
-  - conda install -c jlaura libcsm
+  - conda install -c usgs-astrogeology libcsm
 
   # Development installation
   - conda install pytest pytest-cov
@@ -62,8 +43,7 @@ script:
   - python setup.py install
   - pytest --cov=cycsm
   # clean up any remaining processes...
-  - if [ $TRAVIS_OS_NAME == "linux" ]; then killall5; fi
 
 after_success:
-  # Upload to anaconda and push to coveralls
-  #- coveralls
+  - coveralls
+  - test $TRAVIS_BRANCH = "master" && conda install conda-build && conda install anaconda-client && bash recipes/conda_upload.sh
