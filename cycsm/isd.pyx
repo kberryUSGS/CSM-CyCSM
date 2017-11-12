@@ -20,7 +20,7 @@ cdef class Isd:
     @classmethod
     def loads(cls, stream):
         """
-        Create an isd from a stream, e.g. a string, or from a dict. If a 
+        Create an isd from a stream, e.g. a string, or from a dict. If a
         stream, attempt to load as JSON.
 
         Parameters
