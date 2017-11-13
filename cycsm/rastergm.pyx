@@ -1,5 +1,5 @@
 cdef class SensorPartials:
   cdef CppSensorPartials thisptr
 
-  def __cinit_(self, double ld, double sd):
+  def __cinit__(self, double ld, double sd):
       self.thisptr = CppSensorPartials(ld, sd)
