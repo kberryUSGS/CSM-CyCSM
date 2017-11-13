@@ -5,12 +5,14 @@ package:
   version: {{ version }}
 
 source:
-  path: /Users/jlaura/github/usgs_csm/CSM-CyCSM 
+  path: /Users/jlaura/github/usgs_csm/CSM-CyCSM
   #git_url: https://github.com/USGS-Astrogeology/CSM-CyCSM
   #git_rev: master
 
 build:
-  number: 0
+  number: 1
+
+detect_binary_files_with_prefix: true
 
 requirements:
   build:
