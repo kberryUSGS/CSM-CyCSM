@@ -10,18 +10,19 @@ source:
 
 build:
   number: 1
+  skip: True  # [not py3k]
 
 detect_binary_files_with_prefix: true
 
 requirements:
   build:
-    - python >=3.*
+    - python
     - setuptools
     - numpy >=1.10
     - cython >=0.23
     - libcsm
   run:
-    - python >=3.*
+    - python
     - numpy >=1.10
     - libcsm
 
