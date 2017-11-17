@@ -1,9 +1,22 @@
 
 language: generic  # Since we use conda, just go generic
 
-os:
-  - linux
-  - osx
+matrix:
+  include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-6
+      env:
+        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
+    - os: osx
+      osx_image: xcode9.1
+      sudo: false
+      compiler:
+        - clang
 
 branches:
   only:
