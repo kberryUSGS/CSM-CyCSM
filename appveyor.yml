@@ -15,6 +15,7 @@ configuration:
 
 install:
   - cmd: call C:\\Miniconda36-x64\Scripts\activate.bat
+  - cmd: conda info
   - cmd: conda config --set always_yes yes --set changeps1 no
   - cmd: conda update -q conda
   - cmd: conda config --add channels usgs-astrogeology
