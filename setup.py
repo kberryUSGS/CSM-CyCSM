@@ -7,9 +7,12 @@ from Cython.Build import cythonize
 from Cython.Distutils import build_ext
 
 INCLUDE_DIRS = []
-# Look for the csmapi headers in the standard location
+LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
+
 if sys.platform == 'win32' or sys.platform == 'win64':
     INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('data'), 'Library\\include\\csm'))
+    LIBRARY_DIRS.append(os.path.join(sysconfig.get_path('data'), 'Library\\lib'))
+    LIBRARY_DIRS.append(os.path.join(sysconfig.get_path('data'), 'Library\\bin'))
     COMPILE_ARGS = []
 else:
     COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
@@ -18,7 +21,6 @@ if sys.platform == 'darwin':
     COMPILE_ARGS.append('-mmacosx-version-min=10.9')
 
 INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('include'), 'csm'))
-LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
 LIBRARIES = ['csmapi']
 
 def generate_extension(path_name, sources):
