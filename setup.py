@@ -9,10 +9,8 @@ from Cython.Distutils import build_ext
 INCLUDE_DIRS = []
 LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
 
+
 if sys.platform == 'win32' or sys.platform == 'win64':
-    INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('data'), 'Library\\include\\csm'))
-    LIBRARY_DIRS.append(os.path.join(sysconfig.get_path('data'), 'Library\\lib'))
-    LIBRARY_DIRS.append(os.path.join(sysconfig.get_path('data'), 'Library\\bin'))
     COMPILE_ARGS = []
 else:
     COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
