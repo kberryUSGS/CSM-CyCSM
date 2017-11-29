@@ -7,13 +7,20 @@ from Cython.Build import cythonize
 from Cython.Distutils import build_ext
 
 # Look for the csmapi headers in the standard location
-incdir = os.path.dirname(sysconfig.get_path('include'))
-incdir = os.path.join(incdir, 'csm')
+if sys.platform == 'win32' or sys.platform == 'win64':
+    incdir = os.path.join(sysconfig.get_path('include'), 'csm')
+    COMPILE_ARGS = []
+else:
+    incdir = os.path.dirname(sysconfig.get_path('include'))
+    incdir = os.path.join(incdir, 'csm')
+    COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
+
+if sys.platform == 'darwin':
+    COMPILE_ARGS.append('-mmacosx-version-min=10.9')
 
 INCLUDE_DIRS = [incdir]
 LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
 LIBRARIES = ['csmapi']
-COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
 
 def generate_extension(path_name, sources):
     return Extension(path_name,
@@ -22,11 +29,8 @@ def generate_extension(path_name, sources):
                 language='c++',
                 include_dirs=INCLUDE_DIRS,
                 runtime_library_dirs=LIBRARY_DIRS,
-                library_dirs=LIBRARY_DIRS,
+                #library_dirs=LIBRARY_DIRS,
                 libraries=LIBRARIES)
-
-if sys.platform == 'darwin':
-    COMPILE_ARGS.append('-mmacosx-version-min=10.9')
 
 # Create the extensions
 extensions = [generate_extension('cycsm.isd', ['cycsm/isd.pyx']),

@@ -1,0 +1,35 @@
+# Build worker image (VM template)
+image: Visual Studio 2017
+
+branches:
+  only:
+  - master
+
+version: '0.1.0.{build}'
+
+platform:
+  - x64
+
+configuration:
+  - Release
+
+install:
+  - cmd: call C:\\Miniconda36-x64\Scripts\activate.bat
+  - cmd: conda config --set always_yes yes --set changeps1 no
+  - cmd: conda update -q conda
+  - cmd: conda config --add channels usgs-astrogeology
+  - cmd: conda config --add channels conda-forge
+  - cmd: conda install -c conda-forge numpy cython pytest
+  - cmd: conda install -c usgs-astrogeology libcsm
+  - cmd: conda install conda-build anaconda-client
+  - cmd: conda config --set anaconda_upload yes
+
+build_script:
+  - cmd: python setup.py install
+
+test_script:
+  - cmd: pytest --cov=cycsm 
+
+on_success:
+  - cmd: conda build --token $CONDA_UPLOAD_TOKEN .
+

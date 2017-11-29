@@ -6,8 +6,8 @@ cdef class Version:
         else:
             self.thisptr = new CppVersion(major, minor, revision)
 
-    def __eq__(self, other):
-        return self.version == other.version
+    #def __eq__(self, other):
+    #    return self.version == other.version
         
     @property
     def version(self):
