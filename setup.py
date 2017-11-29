@@ -6,19 +6,18 @@ from setuptools import setup, Extension, find_packages
 from Cython.Build import cythonize
 from Cython.Distutils import build_ext
 
+INCLUDE_DIRS = []
 # Look for the csmapi headers in the standard location
 if sys.platform == 'win32' or sys.platform == 'win64':
-    incdir = os.path.join(sysconfig.get_path('include'), 'csm')
+    INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('data'), 'Library\\include\\csm'))
     COMPILE_ARGS = []
 else:
-    incdir = os.path.dirname(sysconfig.get_path('include'))
-    incdir = os.path.join(incdir, 'csm')
     COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
 
 if sys.platform == 'darwin':
     COMPILE_ARGS.append('-mmacosx-version-min=10.9')
 
-INCLUDE_DIRS = [incdir]
+INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('include'), 'csm'))
 LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
 LIBRARIES = ['csmapi']
 

@@ -5,8 +5,9 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://github.com/USGS-Astrogeology/CSM-CyCSM
-  git_rev: master
+  #git_url: https://github.com/USGS-Astrogeology/CSM-CyCSM
+  #git_rev: master
+  path: C:\Users\E5470\CSM-CyCSM
 
 build:
   number: 1
