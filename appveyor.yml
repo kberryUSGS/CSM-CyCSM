@@ -24,9 +24,9 @@ install:
   - cmd: conda install -c usgs-astrogeology libcsm
   - cmd: conda install conda-build anaconda-client
   - cmd: conda config --set anaconda_upload yes
-
-build_script:
   - cmd: python setup.py install
+
+ build: false
 
 test_script:
   - cmd: pytest --cov=cycsm 
