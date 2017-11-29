@@ -11,6 +11,12 @@ LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard plac
 
 
 if sys.platform == 'win32' or sys.platform == 'win64':
+    try:
+        INCLUDE_DIRS.append(os.environ['LIBRARY_INC'])
+    except: pass
+    try:
+        LIBRARY_DIRS.append([os.environ['LIBRARY_LIB'], os.environ['LIBRARY_BIN']])
+    except: pass
     COMPILE_ARGS = []
 else:
     COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
