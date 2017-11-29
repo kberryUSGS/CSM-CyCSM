@@ -31,5 +31,5 @@ test_script:
   - cmd: pytest --cov=cycsm 
 
 on_success:
-  - cmd: conda build --token $CONDA_UPLOAD_TOKEN .
+  - cmd: conda build --token %CONDA_UPLOAD_TOKEN% .
 
