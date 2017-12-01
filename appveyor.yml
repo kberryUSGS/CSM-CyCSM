@@ -25,7 +25,9 @@ install:
   - cmd: conda install -c usgs-astrogeology libcsm
   - cmd: conda install conda-build anaconda-client
   - cmd: conda config --set anaconda_upload yes
-  
+  # Get the PATH setup to also include the conda search
+  - cmd: set "PATH=%LIBRARY_BIN%;%LIBRARY_INC%;%LIBRARY_LIB%;%PATH%"
+
 build_script:
   - python setup.py install
 
