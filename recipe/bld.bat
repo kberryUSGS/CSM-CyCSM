@@ -1,7 +1,4 @@
-:: Update the PATH to include the Anaconda Library
-set "PATH=%LIBRARY_BIN%;%LIBRARY_INC%;%LIBRARY_LIB%;%PATH%"
-echo %PATH%
-echo where python
+python setup.py build_ext --include-dirs %LIBRARY_INC% --library-dirs %LIBRARY_LIB%
 python setup.py install
 
 if errorlevel 1 exit 1

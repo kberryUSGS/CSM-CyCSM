@@ -17,10 +17,6 @@ COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
 
 if sys.platform == 'darwin':
     COMPILE_ARGS.append('-mmacosx-version-min=10.9')
-elif sys.platform == 'win32' or sys.platform == 'win64':
-    try:
-        INCLUDE_DIRS.append(os.environ['LIBRARY_INC'])
-    except: pass
 INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('include'), 'csm'))
 
 def generate_extension(path_name, sources):
