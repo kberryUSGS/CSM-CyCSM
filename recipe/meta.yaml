@@ -21,10 +21,12 @@ requirements:
     - numpy >=1.10
     - cython >=0.23
     - libcsm
+    - vc 14  # [win and py>=35]
   run:
     - python
     - numpy >=1.10
     - libcsm
+    - vc 14  # [win and py>=35]
 
 test:
   imports:
