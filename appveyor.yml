@@ -25,14 +25,6 @@ install:
   - cmd: conda install -c usgs-astrogeology libcsm
   - cmd: conda install conda-build anaconda-client
   - cmd: conda config --set anaconda_upload yes
+  - conda build --token %CONDA_UPLOAD_TOKEN% .
 
-build_script:
-  - python setup.py build_ext --include-dirs C:\\Miniconda36-x64\Library\include --library-dirs C:\\Miniconda36-x64\bin;C:\\Miniconda36-x64\lib
-  - python setup.py install
-
-test_script:
-  - pytest --cov=cycsm 
-
-on_success:
-  - cmd: conda build --token %CONDA_UPLOAD_TOKEN% .
 
