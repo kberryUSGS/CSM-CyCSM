@@ -25,7 +25,7 @@ install:
 build_script:
   # Have to setup the VS17 env. first
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
-  - python setup.py install
+  - python setup.py build --compiler=msvc
 
 test_script:
   - pytest --cov=cycsm
