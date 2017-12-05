@@ -15,8 +15,6 @@ configuration:
 
 install:
   - cmd: call C:\\Miniconda36-x64\Scripts\activate.bat
-  - cmd: conda info
-  - cmd: where python
   - cmd: conda config --set always_yes yes --set changeps1 no
   - cmd: conda update -q conda
   - cmd: conda config --add channels usgs-astrogeology
@@ -28,10 +26,12 @@ install:
   - conda build --token %CONDA_UPLOAD_TOKEN% .
 
 build_script:
+  # Have to setup the VS17 env. first
+  - call "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat"
   - python setup.py install
 
 test_script:
-  - pytest --cov=cycsm 
+  - pytest --cov=cycsm
 
 on_success:
   - cmd: conda build --token %CONDA_UPLOAD_TOKEN% .
