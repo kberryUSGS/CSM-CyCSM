@@ -20,10 +20,13 @@ if sys.platform == 'darwin':
 elif sys.platform.startswith("win"):
     try:
         INCLUDE_DIRS.append(os.environ['LIBRARY_INC'])
+        print(os.environ['LIBRARY_INC'])
     except: pass
     try:
         LIBRARY_DIRS.append(os.environ['LIBRARY_LIB'])
         LIBRARY_DIRS.append(os.environ['LIBRARY_BIN'])
+        print(os.environ['LIBRARY_LIB'])
+        print(os.environ['LIBRARY_BIN'])
     except:
         pass
 INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('include'), 'csm'))
