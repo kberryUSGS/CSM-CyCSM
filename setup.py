@@ -44,7 +44,8 @@ extensions = [generate_extension('cycsm.isd', ['cycsm/isd.pyx']),
               generate_extension('cycsm.csm', ['cycsm/csm.pyx']),
               generate_extension('cycsm.model', ['cycsm/model.pyx']),
               generate_extension('cycsm.correlationmodel', ['cycsm/correlationmodel.pyx']),
-              generate_extension('cycsm.rastergm', ['cycsm/rastergm.pyx'])]
+              generate_extension('cycsm.rastergm', ['cycsm/rastergm.pyx']),
+              generate_extension('cycsm.ellipsoid', ['cycsm/ellipsoid.pyx'])]
 
 setup(
     name='cycsm',

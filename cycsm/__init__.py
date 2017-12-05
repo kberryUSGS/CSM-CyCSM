@@ -4,6 +4,7 @@ import cycsm.isd
 import cycsm.model
 import cycsm.rastergm
 import cycsm.version
+import cycsm.ellipsoid
 #from cycsm import csm
 #from cycsm import examples
 #from cycsm import isd
