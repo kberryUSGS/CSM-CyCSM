@@ -25,7 +25,6 @@ elif sys.platform.startswith("win"):
 INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('include'), 'csm'))
 
 def generate_extension(path_name, sources):
-    if 
     return Extension(path_name,
                 sources=sources,
                 extra_compile_args=COMPILE_ARGS,
