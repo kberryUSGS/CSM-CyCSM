@@ -10,11 +10,6 @@ platform:
 configuration:
   - Release
 
-environment:
-  - LIBRARY_INC: C:\\Miniconda36-x64\Library\include
-  - LIBRARY_BIN: C:\\Miniconda36-x64\Library\bin
-  - LIBRARY_LIB: C:\\Miniconda36-x64\Library\lib
-
 install:
   - cmd: call C:\\Miniconda36-x64\Scripts\activate.bat
   - cmd: conda config --set always_yes yes --set changeps1 no
@@ -25,7 +20,8 @@ install:
   - cmd: conda install -c usgs-astrogeology libcsm
 
 build_script:
-  - python setup.py build --compiler=msvc
+  - conda build .
+  - conda install --use-local cycsm
 
 test_script:
   - pytest --cov=cycsm
