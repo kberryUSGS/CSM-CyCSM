@@ -18,7 +18,7 @@ install:
   - cmd: conda config --add channels conda-forge
   - cmd: conda install -c conda-forge numpy cython pytest
   - cmd: conda install -c usgs-astrogeology libcsm
-  - cmd: conda install conda-build anaconda-client
+  - cmd: conda install conda-build anaconda-client pytest-cov
 
 build_script:
   - cmd: conda build .
