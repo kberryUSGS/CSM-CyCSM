@@ -18,15 +18,16 @@ install:
   - cmd: conda config --add channels conda-forge
   - cmd: conda install -c conda-forge numpy cython pytest
   - cmd: conda install -c usgs-astrogeology libcsm
+  - cmd: conda install conda-build anaconda-client
 
 build_script:
-  - conda build .
-  - conda install --use-local cycsm
+  - cmd: conda build .
+  - cmd: conda install --use-local cycsm
 
 test_script:
-  - pytest --cov=cycsm
+  - cmd: pytest --cov=cycsm
 
 on_success:
   - cmd: conda config --set anaconda_upload yes
-  - cmd: conda install conda-build anaconda-client
+
   - cmd: conda build --token %CONDA_UPLOAD_TOKEN% .
