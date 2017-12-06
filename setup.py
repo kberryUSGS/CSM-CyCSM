@@ -21,18 +21,11 @@ elif sys.platform.startswith("win"):
     try:
         INCLUDE_DIRS.append(os.environ['LIBRARY_INC'])
         INCLUDE_DIRS.append(os.path.join(os.environ['LIBRARY_INC'], 'csm'))
-        print(os.environ['LIBRARY_INC'])
     except: pass
-    try:
-        LIBRARY_DIRS.append(os.environ['LIBRARY_LIB'])
-        LIBRARY_DIRS.append(os.environ['LIBRARY_BIN'])
-        print(os.environ['LIBRARY_LIB'])
-        print(os.environ['LIBRARY_BIN'])
-    except:
-        pass
 INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('include'), 'csm'))
 
 def generate_extension(path_name, sources):
+    if 
     return Extension(path_name,
                 sources=sources,
                 extra_compile_args=COMPILE_ARGS,
