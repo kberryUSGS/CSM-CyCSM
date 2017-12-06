@@ -18,10 +18,9 @@ COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
 if sys.platform == 'darwin':
     COMPILE_ARGS.append('-mmacosx-version-min=10.9')
 elif sys.platform.startswith("win"):
-    print('WIN')
-    print(os.environ['PATH'])
     try:
         INCLUDE_DIRS.append(os.environ['LIBRARY_INC'])
+        INCLUDE_DIRS.append(os.path.join(os.environ['LIBRARY_INC'], 'csm'))
         print(os.environ['LIBRARY_INC'])
     except: pass
     try:
