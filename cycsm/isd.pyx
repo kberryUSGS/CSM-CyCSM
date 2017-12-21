@@ -1,7 +1,7 @@
 import ast
 import json
 import numpy as np
-
+import re
 
 cdef class Isd:
     #cdef CppIsd *thisptr
@@ -39,6 +39,42 @@ cdef class Isd:
         for k, v in stream.items():
             isd.addparam(k, v)
         return isd
+
+    @classmethod
+    def read_socet_file(cls, keywords, ell=None):
+        """
+        Read a SocetSet ketwords.list file with optional ellipsoid file,
+        convert into an dict and pipe to the loads method.
+        """
+        isd = cls()
+
+        matcher = re.compile(r'\b(?!\d)\w+\b')
+        numeric_matcher = re.compile(r'\W-?(?:0|[1-9]\d*)(?:\.\d*)?(?:[eE][+\-]?\d+)?')
+        stream = {}
+        with open(keywords, 'r') as f:
+            for l in f:
+                l = l.rstrip()
+                if not l:
+                    continue
+                matches = matcher.findall(l)
+                if matches:
+                    key = matches[0]
+                    stream[key] = []
+                    # Case where the kw are strings after the key
+                    if len(matches) > 1:
+                        stream[key] = matches[1:]
+                    # Case where the kw are numeric types after the key
+                    else:
+                        nums = numeric_matcher.findall(l)
+                        if len(nums) == 1:
+                            stream[key] = float(nums[0])
+                        else:
+                            stream[key] += map(float, nums)
+                else:
+                    # Case where the values are on a newline after the key
+                    nums = numeric_matcher.findall(l)
+                    stream[key] += map(float, nums)
+        return cls.loads(stream)
 
     def addparam(self, key, value):
         key = str(key).encode()
