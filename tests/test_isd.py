@@ -58,4 +58,3 @@ def test_create_from_socet_lis():
     isd = Isd.read_socet_file(socetlis, socetell)
     assert isd.param('COORD_SYSTEM') == 1
     assert isd.param('EPHEM_PTS', 3) == 8.5246579847096302546560764e+05
-    assert False
