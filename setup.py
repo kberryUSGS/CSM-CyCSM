@@ -7,10 +7,9 @@ from Cython.Build import cythonize
 from Cython.Distutils import build_ext
 
 
-incdir = os.path.dirname(sysconfig.get_path('include'))
-incdir = os.path.join(incdir, 'csm')
 
-INCLUDE_DIRS = [incdir]
+
+INCLUDE_DIRS = []
 LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
 LIBRARIES = ['csmapi']
 COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
@@ -22,7 +21,11 @@ elif sys.platform.startswith("win"):
         INCLUDE_DIRS.append(os.environ['LIBRARY_INC'])
         INCLUDE_DIRS.append(os.path.join(os.environ['LIBRARY_INC'], 'csm'))
     except: pass
-INCLUDE_DIRS.append(os.path.join(sysconfig.get_path('include'), 'csm'))
+    COMPILE_ARGS = []
+
+incdir = os.path.dirname(sysconfig.get_path('include'))
+incdir = os.path.join(incdir, 'csm')
+INCLUDE_DIRS.append(incdir)
 
 def generate_extension(path_name, sources):
     return Extension(path_name,

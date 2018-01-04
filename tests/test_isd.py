@@ -51,3 +51,10 @@ def test_create_from_json_file():
                     assert v[i] == isd.param(k, i)
             else:
                 assert v == isd.param(k)
+
+def test_create_from_socet_lis():
+    socetlis = get_path('socet_isd.lis')
+    socetell = get_path('ellipsoid.ell')
+    isd = Isd.read_socet_file(socetlis, socetell)
+    assert isd.param('COORD_SYSTEM') == 1
+    assert isd.param('EPHEM_PTS', 3) == 8.5246579847096302546560764e+05
