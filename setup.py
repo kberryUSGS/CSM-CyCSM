@@ -9,8 +9,8 @@ from Cython.Distutils import build_ext
 
 
 
-INCLUDE_DIRS = []
-LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
+INCLUDE_DIRS = ['/scratch/csm/include/csm']
+LIBRARY_DIRS = ['/scratch/csm/lib']  # This assumes that libcsmapi is installed in a standard place
 LIBRARIES = ['csmapi']
 COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
 
