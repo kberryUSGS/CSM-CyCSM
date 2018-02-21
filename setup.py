@@ -9,8 +9,8 @@ from Cython.Distutils import build_ext
 
 
 
-INCLUDE_DIRS = []
-LIBRARY_DIRS = []  # This assumes that libcsmapi is installed in a standard place
+INCLUDE_DIRS = ['/scratch/csm2/include/csm','/scratch/csm2/include']
+LIBRARY_DIRS = ['/scratch/csm2/lib/']  # This assumes that libcsmapi is installed in a standard place
 LIBRARIES = ['csmapi']
 COMPILE_ARGS = ['-g', '-std=c++11'] #, '-std=c++11']
 
@@ -34,7 +34,7 @@ def generate_extension(path_name, sources):
                 language='c++',
                 include_dirs=INCLUDE_DIRS,
                 runtime_library_dirs=LIBRARY_DIRS,
-                #library_dirs=LIBRARY_DIRS,
+                library_dirs=LIBRARY_DIRS,
                 libraries=LIBRARIES)
 
 # Create the extensions
